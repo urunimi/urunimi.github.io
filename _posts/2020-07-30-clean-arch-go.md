@@ -43,6 +43,25 @@ categories: architecture,go
 
 ## 프로젝트 레이아웃
 
+```graphviz
+graph {
+    fontname = Helvetica
+    node [shape = circle]
+
+    subgraph cluster01 {
+        label="Doamin"
+        entity[label="Entity" width=1.6]
+        use_case[label="Use case" width=1.6]
+        repo[label="Repository" width=1.6]
+    }
+
+    repo_impl[label="Repo impl" width=1]
+
+    repo -- repo_impl [dir="forward" style=dotted arrowhead=onormal]
+    repo_impl -- use_case [dir="forward" arrowhead=onormal]
+}
+```
+
 ```sh
 .
 ├── cmd
