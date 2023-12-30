@@ -2,7 +2,7 @@
 toc: true
 title: "KISS, YAGNI, DRY & LoD"
 date: 2023-10-19
-categories: [ architecture ]
+categories: [ architecture, design-pattern ]
 ---
 ## KISS 원칙
 
