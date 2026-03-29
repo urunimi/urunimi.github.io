@@ -100,6 +100,8 @@ dev feature-auth # worktree 자동 생성 후 실행
 
 context switching 비용을 줄이는 핵심입니다. Raycast에서 프로젝트 이름을 입력하면 VS Code와 cmux가 동시에 열리고, cmux에서는 자동으로 `dev`가 실행됩니다.
 
+![Raycast에서 프로젝트 열기](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2026-03-29/raycast.png)
+
 ```bash
 #!/bin/bash
 # @raycast.schemaVersion 1
