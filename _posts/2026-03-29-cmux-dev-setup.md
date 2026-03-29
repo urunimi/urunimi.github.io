@@ -1,34 +1,44 @@
 ---
 toc: true
-title: "cmux + Claude Code + Raycast로 AI 코딩 환경 세팅하기"
+title: "Claude Code 멀티 프로젝트 환경 구성하기"
 date: 2026-03-29
 categories: [ dev-tools, ai ]
 ---
 
-## cmux: AI 에이전트를 위한 터미널
+Claude Code를 본격적으로 사용하다 보면 자연스럽게 여러 프로젝트를 동시에 진행하게 됩니다. 한쪽에서 에이전트가 리팩토링을 하는 동안 다른 프로젝트의 버그를 잡고, 또 다른 프로젝트의 PR 리뷰를 확인하는 식입니다.
 
-터미널 도구는 [cmux](https://github.com/manaflow-ai/cmux)를 씁니다. Ghostty 기반의 macOS 네이티브 앱인데, AI 코딩 에이전트를 염두에 두고 만들어진 터미널이에요.
+문제는 context switching 비용입니다. 프로젝트를 전환할 때마다 터미널을 열고, 디렉토리를 이동하고, Claude Code를 다시 띄우고, 에디터에서 해당 프로젝트를 여는 과정을 반복해야 합니다. 에이전트가 코드를 바꾸고 있는데 그 변경사항을 확인하려면 별도로 `git diff`를 쳐야 하고요.
 
-기존에 Ghostty + tmux 조합을 쓰던 분들이라면 익숙한 개념이 많을 거예요. 다만 tmux를 쓰다 보면 몇 가지 불편한 점이 있었어요.
+이 글에서는 이 문제를 해결하기 위해 구성한 환경을 정리합니다.
 
-- **Shift+Enter 줄바꿈이 안 됨** — tmux가 키 시퀀스를 가로채서 Claude Code에서 멀티라인 입력이 안 됩니다
-- **알림이 안 옴** — Claude Code가 작업을 끝내도 tmux가 OSC 시퀀스를 차단해서 macOS 알림이 오지 않아요
-- **세션 관리가 번거로움** — 프로젝트마다 tmux 세션을 만들고 관리하는 게 생각보다 손이 많이 갑니다
+- **cmux** — Claude Code에 최적화된 터미널
+- **dev 스크립트** — Claude Code + lazygit을 한 번에 세팅
+- **Raycast 스크립트** — 프로젝트 이름 하나로 에디터와 터미널을 동시에 오픈
 
-cmux는 이 문제들을 깔끔하게 해결해줍니다. Ghostty config를 그대로 읽어서 기존 테마와 폰트 설정이 유지되고, tmux 없이도 워크스페이스와 split pane을 CLI로 제어할 수 있어요.
+## tmux의 한계
 
-설치는 Homebrew로 간단하게:
+기존에 Ghostty + tmux 조합을 사용하고 있었습니다. 하지만 Claude Code와 함께 쓸 때 몇 가지 문제가 있었습니다.
+
+- **Shift+Enter 줄바꿈이 안 됨** — tmux가 키 시퀀스를 가로채서 Claude Code에서 멀티라인 입력이 불가능합니다
+- **알림이 안 옴** — Claude Code가 작업을 끝내도 tmux가 OSC 시퀀스를 차단해서 macOS 알림이 오지 않습니다
+- **세션 관리가 번거로움** — 프로젝트마다 tmux 세션을 만들고 관리하는 것이 생각보다 손이 많이 갑니다
+
+멀티 프로젝트 환경에서는 알림이 특히 중요합니다. 에이전트에게 작업을 맡기고 다른 프로젝트로 전환했을 때, 작업 완료 알림이 오지 않으면 수시로 확인하러 돌아와야 합니다.
+
+## cmux
+
+[cmux](https://github.com/manaflow-ai/cmux)는 Ghostty 기반의 macOS 네이티브 터미널입니다. AI 코딩 에이전트 환경을 고려해서 만들어졌고, 위에서 언급한 tmux의 문제들을 해결해줍니다. Ghostty config를 그대로 읽기 때문에 기존 테마와 폰트 설정이 유지되고, tmux 없이도 워크스페이스와 split pane을 CLI로 제어할 수 있습니다.
+
+설치는 Homebrew로 합니다.
 
 ```bash
 brew tap manaflow-ai/cmux
 brew install --cask cmux
 ```
 
----
+## dev 스크립트: Claude Code + lazygit 자동 세팅
 
-## dev 스크립트: 프로젝트 환경을 한 번에
-
-프로젝트 폴더에서 `dev`를 치면 Claude Code와 lazygit이 자동으로 세팅됩니다.
+프로젝트 폴더에서 `dev`를 실행하면 Claude Code와 lazygit이 split pane으로 자동 세팅됩니다.
 
 ```
 ┌─────────────────────────────┐
@@ -38,9 +48,9 @@ brew install --cask cmux
 └─────────────────────────────┘
 ```
 
-위에서 Claude Code로 작업을 지시하고, 아래 lazygit에서 에이전트가 바꾼 파일을 바로 확인하는 구조예요. `d`키로 diff를 보면 어떤 코드가 어떻게 바뀌었는지 한눈에 파악할 수 있습니다.
+위 pane에서 Claude Code로 작업을 지시하고, 아래 lazygit에서 에이전트가 바꾼 파일을 바로 확인하는 구조입니다. `d`키로 diff를 보면 어떤 코드가 어떻게 바뀌었는지 한눈에 파악할 수 있습니다.
 
-스크립트 전체 코드입니다:
+스크립트 전체 코드입니다.
 
 ```bash
 #!/bin/bash
@@ -73,24 +83,22 @@ cmux send-key --surface "$LAZYGIT_SURFACE" enter
 cmux focus-panel --panel "$CLAUDE_PANE"
 ```
 
-저장 위치는 `/usr/local/bin/dev`로 하고 실행 권한을 주면 됩니다:
+저장 위치는 `/usr/local/bin/dev`로 하고 실행 권한을 줍니다.
 
 ```bash
 chmod +x /usr/local/bin/dev
 ```
 
-Git worktree도 지원해요. 병렬로 여러 작업을 진행할 때 브랜치 이름을 인자로 넘기면 워크트리가 자동으로 생성됩니다:
+Git worktree도 지원합니다. 병렬로 여러 작업을 진행할 때 브랜치 이름을 인자로 넘기면 워크트리가 자동으로 생성됩니다.
 
 ```bash
 dev              # 현재 폴더에서 실행
 dev feature-auth # worktree 자동 생성 후 실행
 ```
 
----
+## Raycast 스크립트: 프로젝트 전환 자동화
 
-## Raycast 스크립트: VS Code와 cmux를 동시에
-
-이제 핵심입니다. Raycast에서 프로젝트 이름을 입력하면 VS Code와 cmux가 동시에 열리고, cmux에서는 자동으로 `dev`가 실행됩니다.
+context switching 비용을 줄이는 핵심입니다. Raycast에서 프로젝트 이름을 입력하면 VS Code와 cmux가 동시에 열리고, cmux에서는 자동으로 `dev`가 실행됩니다.
 
 ```bash
 #!/bin/bash
@@ -141,24 +149,22 @@ fi
 osascript -e 'tell application "cmux" to activate'
 ```
 
-한 가지 주의할 점이 있어요. cmux는 기본적으로 cmux 내부 프로세스만 소켓 연결을 허용하는데, Raycast 스크립트는 외부 프로세스라서 접근이 막힙니다. cmux Settings에서 소켓 접근 권한을 `allowAll`로 변경해야 해요.
+주의할 점이 있습니다. cmux는 기본적으로 내부 프로세스만 소켓 연결을 허용합니다. Raycast 스크립트는 외부 프로세스이므로 cmux Settings에서 소켓 접근 권한을 `allowAll`로 변경해야 합니다.
 
-이제 Raycast에서 `Open Project` → `data-api` 를 입력하면:
+Raycast에서 `Open Project` → `data-api`를 입력하면 다음이 자동으로 실행됩니다.
 
-1. VS Code가 `~/Projects/data-api`를 열고
-2. cmux에 `data-api` 워크스페이스가 생성되고
-3. Claude Code + lazygit이 자동으로 세팅됩니다
+1. VS Code가 `~/Projects/data-api`를 엽니다
+2. cmux에 `data-api` 워크스페이스가 생성됩니다
+3. Claude Code + lazygit이 세팅됩니다
 
-같은 프로젝트를 다시 열면 기존 워크스페이스로 바로 전환돼요. VS Code도 이미 열린 프로젝트라면 그쪽으로 포커스가 이동하고요. 덕분에 프로젝트를 여러 개 동시에 진행해도 항상 터미널과 VS Code가 같은 코드베이스를 보고 있게 됩니다.
+같은 프로젝트를 다시 열면 기존 워크스페이스로 바로 전환됩니다. VS Code도 이미 열린 프로젝트라면 해당 창으로 포커스가 이동합니다. 프로젝트를 여러 개 동시에 진행해도 터미널과 에디터가 항상 같은 코드베이스를 바라보게 됩니다.
 
----
+## 정리
 
-## 마무리
+| 도구 | 역할 |
+|------|------|
+| **cmux** | Shift+Enter, 알림, 워크스페이스 관리 |
+| **dev 스크립트** | Claude Code + lazygit 자동 세팅, worktree 지원 |
+| **Raycast** | 프로젝트 이름 하나로 VS Code + cmux 동시 오픈 |
 
-세팅을 정리하면 이렇습니다:
-
-- **Raycast** → 프로젝트 이름 하나로 VS Code + cmux 동시 오픈, 중복 방지
-- **dev 스크립트** → Claude Code + lazygit 자동 세팅, worktree 지원
-- **cmux** → Shift+Enter, 알림, 워크스페이스 관리 모두 해결
-
-AI 에이전트와 함께 일하는 방식이 계속 바뀌고 있는 것 같아요. 지금 이 세팅이 정답은 아니겠지만, 같은 고민을 하고 계신 분들께 조금이나마 참고가 됐으면 합니다.
+결국 하고 싶었던 것은 "프로젝트 전환 비용을 0에 가깝게 만드는 것"이었습니다. 에이전트가 코드를 작성하는 시간은 줄일 수 없지만, 그 사이에 다른 프로젝트로 전환하고 돌아오는 비용은 줄일 수 있습니다.
