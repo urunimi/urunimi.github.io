@@ -7,13 +7,13 @@ categories: [ intro ]
 
 Buzzvil 에서 회사 블로그에 기재하기 위한 인터뷰 내용입니다.
 
-![Ben_blog_photo_960x750_1.jpg](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2018-08-24-intro-myself/Ben_blog_photo_960x750_1.jpg)
+![Ben_blog_photo_960x750_1.jpg](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2018-08-24-intro-myself/Ben_blog_photo_960x750_1.jpg)
 
 Buzzvil People에서는 다양한 배경과 성격 그리고 생각을 지닌 버즈빌리언들을 한 분 한 분 소개하는 시간을 갖습니다. 어떻게 버즈빌에 최고의 동료들이 모여 최고의 팀을 만들어가고 있는 지 궁금하시다면, 색색깔 다양한 버즈빌리언들 한분 한분의 이야기가 궁금하시다면, Buzzvil People을 주목해주세요.
 
-![Ben_blog_photo_960x750_3.jpg](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2018-08-24-intro-myself/Ben_blog_photo_960x750_3.jpg)
+![Ben_blog_photo_960x750_3.jpg](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2018-08-24-intro-myself/Ben_blog_photo_960x750_3.jpg)
 
-![Ben_blog_photo_960x750_2.jpg](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2018-08-24-intro-myself/Ben_blog_photo_960x750_2.jpg)
+![Ben_blog_photo_960x750_2.jpg](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2018-08-24-intro-myself/Ben_blog_photo_960x750_2.jpg)
 
 ### **1.** 간단한 자기 소개 부탁드립니다.
 

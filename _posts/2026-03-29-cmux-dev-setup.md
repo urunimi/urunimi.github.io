@@ -55,7 +55,7 @@ brew install --cask cmux
 
 위 pane에서 Claude Code로 작업을 지시하고, 아래 lazygit에서 에이전트가 바꾼 파일을 바로 확인하는 구조입니다.
 
-![VS Code와 cmux가 동시에 열린 모습](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2026-03-29/vscode%20cmux.png)
+![VS Code와 cmux가 동시에 열린 모습](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2026-03-29/vscode%20cmux.png)
 
 스크립트 전체 코드입니다.
 
@@ -107,7 +107,7 @@ dev feature-auth # worktree 자동 생성 후 실행
 
 context switching 비용을 줄이는 핵심입니다. Raycast에서 프로젝트 이름을 입력하면 VS Code와 cmux가 동시에 열리고, cmux에서는 자동으로 `dev`가 실행됩니다.
 
-![Raycast에서 프로젝트 열기](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2026-03-29/raycast.png)
+![Raycast에서 프로젝트 열기](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2026-03-29/raycast.png)
 
 내용을 보시면, `FOLDER=~/Projects/"$1"` 부분을 각자의 환경에 맞춰 변경해주세요. 저는 git repo를 ~/Projects 아래에 모아두고 있어서 아래의 설정으로 사용하고 있습니다.
 
