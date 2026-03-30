@@ -15,7 +15,7 @@ M1 맥북 때문에 입문한 이후 `ARM64` 아키텍쳐 환경에서 `Docker` 
 
 `ARM64` 클러스터에 [ArgoCD 가이드](https://argo-cd.readthedocs.io/en/stable/getting_started/)대로 설치하면 실패합니다. 원인은 간단합니다. 도커허브에 등록된 [ArgoCD 이미지](https://hub.docker.com/r/argoproj/argocd/tags)가 `linux/amd64` 용 빌드만 있기 때문입니다.
 
-![No images for arm](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2021-12-19/argocd-arm-0.png)
+![No images for arm](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2021-12-19/argocd-arm-0.png)
 
 ## 해결방법 찾기
 
@@ -30,7 +30,7 @@ M1 맥북 때문에 입문한 이후 `ARM64` 아키텍쳐 환경에서 `Docker` 
 
 역시 스웨덴의 천사 개발자 한분이 [이슈를 제기](https://github.com/argoproj/argo-cd/issues/2167)했고 직접 이미지를 만들어서 지속적으로 업로드하고 있었습니다. [[도커 허브 링크]](https://hub.docker.com/r/alinbalutoiu/argocd) 
 
-![ArgoCD for Raspberry Pi](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2021-12-19/argocd-arm-1.png)
+![ArgoCD for Raspberry Pi](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2021-12-19/argocd-arm-1.png)
 
 ## Arm용 ArgoCD 설치
 
@@ -38,11 +38,11 @@ M1 맥북 때문에 입문한 이후 `ARM64` 아키텍쳐 환경에서 `Docker` 
 
 ArgoCD 공식 배포 가이드를 따라가다보면 argo-cd 리포지토리에 설치용 yaml 을 관리하고 있는 것을 확인할 수 있습니다. 
 
-![Install Guide](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2021-12-19/argocd-arm-2.png)
+![Install Guide](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2021-12-19/argocd-arm-2.png)
 
 저는 core 만 설치해보기로 했고 이를 위한 yaml 은 [이 파일](https://github.com/argoproj/argo-cd/blob/master/manifests/core-install.yaml)이었습니다. 해당 파일을 다운로드 한다음 공식이미지(`quay.io/argoproj/argocd:latest`)를 찾아서 `alinbalutoiu/argocd` 이미지로 변경합니다.
 
-![Argo CD Image](https://raw.githubusercontent.com/urunimi/urunimi.github.io/master/_posts/2021-12-19/argocd-arm-5.png)
+![Argo CD Image](https://raw.githubusercontent.com/urunimi/urunimi.github.io/main/_posts/2021-12-19/argocd-arm-5.png)
 
 ### 클러스터에 적용
  
