@@ -4,7 +4,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #FDF8F3;            /* warm cream */
+  --color-bg: #FFFFFF;            /* white */
   --color-ink: #2B2424;           /* deep warm gray */
   --color-ink-muted: #706962;
   --color-border: #E8DDD0;        /* warm tan */
