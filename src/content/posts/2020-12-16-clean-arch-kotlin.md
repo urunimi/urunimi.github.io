@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "Kotlin 언어로 Clean Architecture 시작하기 (feat. Spring Boot)"
 date: 2020-12-16
 categories: [ architecture,kotlin,java,spring ]

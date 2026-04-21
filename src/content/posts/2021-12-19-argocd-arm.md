@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "ARM64 클러스터에서 ArgoCD 설치하기"
 date: 2021-12-19
 categories: [ kubernetes,infra,cicd,argocd ]

@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "정각마다 돌아가는 리그레션 테스트 — 설계 이야기"
 date: 2026-04-21
 categories: [qa, testing, ci]

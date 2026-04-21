@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "Claude Code 멀티 프로젝트 환경 구성하기"
 date: 2026-03-29
 categories: [dev-tools, ai]

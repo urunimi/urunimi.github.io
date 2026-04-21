@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "Rest API 를 지원하는 gRPC 서버 구축하기"
 date: 2021-01-29
 categories: [ go,grpc,api ]

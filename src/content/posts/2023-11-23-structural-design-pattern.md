@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "구조적 디자인 패턴"
 date: 2023-11-23
 categories: [ architecture, design-pattern ]

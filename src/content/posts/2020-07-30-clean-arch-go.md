@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "Go 언어로 Clean Architecture 시작하기"
 date: 2020-07-30
 categories: [ architecture,go ]

@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "Private Pypi 서버 구성하기"
 date: 2019-05-31
 categories: [ python ]

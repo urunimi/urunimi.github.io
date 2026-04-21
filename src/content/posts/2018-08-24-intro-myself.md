@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "[Buzzvil People] Ben Yoo, Software Developer"
 date: 2018-08-24
 categories: [ intro ]

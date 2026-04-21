@@ -1,5 +1,4 @@
 ---
-toc: true
 title: "Clean Architecture 소개"
 date: 2020-03-31
 categories: [ architecture ]
