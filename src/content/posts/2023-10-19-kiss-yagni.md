@@ -243,22 +243,24 @@ print(create_user_api("testemail.com", "password"))  # Output: "Invalid email"
 - 높은 응집도 - 클래스 자체의 설계에 사용. 즉 유사한 기능은 동일한 클래스에 배치되어야 하고 그렇지 않다면 다른 클래스로 분리
 - 낮은 결합도 - 클래스 간의 의존성이 단순하고 명확하게
 
-- 낮은 응집도 높은 결합도의 예시
-    ```mermaid
-    graph TD
-        A[Module A] -->|Depends on| B[Module B]
-        A -->|Depends on| C[Module C]
-        B -->|Depends on| C
-        B -->|Depends on| D[Module D]
-        C -->|Depends on| D
-    ```
+**낮은 응집도 높은 결합도의 예시**
 
-- 높은 응집도 낮은 결합도의 예시
-    ```mermaid
-    graph TD
-        E[Module E] -->|Depends on| F[Module F]
-        G[Module G] -->|Depends on| H[Module H]
-    ```
+```mermaid
+graph TD
+    A[Module A] -->|Depends on| B[Module B]
+    A -->|Depends on| C[Module C]
+    B -->|Depends on| C
+    B -->|Depends on| D[Module D]
+    C -->|Depends on| D
+```
+
+**높은 응집도 낮은 결합도의 예시**
+
+```mermaid
+graph TD
+    E[Module E] -->|Depends on| F[Module F]
+    G[Module G] -->|Depends on| H[Module H]
+```
 
 - 응집도와 결합도를 확인하는 방법?
     import 구문을 확인해보고, 이 모듈이 외부의 어떤 모듈을 사용하는지 확인합니다. 그리고 참조하는 모듈들이 어떤 레이어에 속해 있는지 확인합니다. 만약, 다른 여러 계층의 레이어에 속한 모듈을 참조하고 있다면, 결합도가 높은 상태이므로 리팩토링을 고려합니다.

@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { buildPostPath } from '../lib/permalink';
+
+interface Props { posts: CollectionEntry<'posts'>[]; }
+const { posts } = Astro.props;
+
+const sorted = [...posts].sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const byYear = new Map<number, typeof sorted>();
+for (const p of sorted) {
+  const y = p.data.date.getFullYear();
+  if (!byYear.has(y)) byYear.set(y, []);
+  byYear.get(y)!.push(p);
+}
+
+const fmt = (d: Date) => {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}.${m}.${day}`;
+};
+---
+<ol class="list-none p-0 m-0">
+  {[...byYear.entries()].map(([year, items]) => (
+    <li class="mb-10">
+      <h2 class="text-3xl font-bold text-ink-muted mb-4">{year}</h2>
+      <ul class="list-none p-0 m-0 space-y-3">
+        {items.map((p) => (
+          <li class="flex flex-wrap items-baseline gap-3" data-fade>
+            <time class="text-ink-muted font-mono text-sm tabular-nums">{fmt(p.data.date)}</time>
+            <a
+              href={`/${buildPostPath({ id: p.id, categories: p.data.categories })}/`}
+              class="text-ink hover:text-secondary no-underline font-medium"
+            >{p.data.title}</a>
+            <span class="flex gap-1 flex-wrap">
+              {p.data.categories.map((c) => (
+                <span class="text-xs text-secondary bg-[#E0F2F1] rounded-full px-2 py-0.5">{c}</span>
+              ))}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </li>
+  ))}
+</ol>

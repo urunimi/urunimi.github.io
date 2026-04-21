@@ -1,0 +1,35 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+import Toc from '../components/Toc.astro';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  categories: string[];
+  headings: MarkdownHeading[];
+}
+const { title, date, categories, headings } = Astro.props;
+const fmt = date.toISOString().slice(0, 10);
+---
+<BaseLayout title={title}>
+  <article class="mx-auto max-w-5xl px-4 py-10 flex gap-10">
+    <div class="flex-1 min-w-0">
+      <header class="mb-8">
+        <h1 class="text-4xl font-bold leading-tight">{title}</h1>
+        <div class="mt-3 flex flex-wrap gap-3 text-sm text-ink-muted items-center">
+          <time>{fmt}</time>
+          <span>·</span>
+          <span class="flex gap-1 flex-wrap">
+            {categories.map((c) => (
+              <span class="text-secondary bg-[#E0F2F1] rounded-full px-2 py-0.5">{c}</span>
+            ))}
+          </span>
+        </div>
+      </header>
+      <Prose><slot /></Prose>
+    </div>
+    <Toc headings={headings} />
+  </article>
+</BaseLayout>
