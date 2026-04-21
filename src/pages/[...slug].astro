@@ -1,24 +1,65 @@
 ---
 import { getCollection, render } from 'astro:content';
 import PostLayout from '../layouts/PostLayout.astro';
-import { buildPostPath } from '../lib/permalink';
+import { buildPostPath, buildPostSlug } from '../lib/permalink';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-  return posts.map((post) => ({
-    params: { slug: buildPostPath({ id: post.id, categories: post.data.categories }) },
-    props: { post },
-  }));
+  const paths: Array<{
+    params: { slug: string };
+    props: { postId: string; canonicalUrl: string; kind: 'canonical' | 'redirect' };
+  }> = [];
+
+  for (const post of posts) {
+    const shortSlug = buildPostSlug(post.id);
+    const legacyPath = buildPostPath({ id: post.id, categories: post.data.categories });
+    const canonicalUrl = `/${shortSlug}/`;
+
+    paths.push({
+      params: { slug: shortSlug },
+      props: { postId: post.id, canonicalUrl, kind: 'canonical' },
+    });
+
+    if (legacyPath !== shortSlug) {
+      paths.push({
+        params: { slug: legacyPath },
+        props: { postId: post.id, canonicalUrl, kind: 'redirect' },
+      });
+    }
+  }
+
+  return paths;
 }
 
-const { post } = Astro.props;
-const { Content, headings } = await render(post);
+const { postId, canonicalUrl, kind } = Astro.props;
+const posts = await getCollection('posts');
+const post = posts.find((p) => p.id === postId)!;
+const absoluteCanonical = new URL(canonicalUrl, Astro.site).toString();
+
+if (kind === 'canonical') {
+  var { Content, headings } = await render(post);
+}
 ---
-<PostLayout
-  title={post.data.title}
-  date={post.data.date}
-  categories={post.data.categories}
-  headings={headings}
->
-  <Content />
-</PostLayout>
+{kind === 'redirect' ? (
+  <html lang="ko">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+      <link rel="canonical" href={absoluteCanonical} />
+      <meta name="robots" content="noindex, follow" />
+      <title>{post.data.title}</title>
+    </head>
+    <body>
+      <p>Redirecting to <a href={canonicalUrl}>{canonicalUrl}</a>…</p>
+    </body>
+  </html>
+) : (
+  <PostLayout
+    title={post.data.title}
+    date={post.data.date}
+    categories={post.data.categories}
+    headings={headings!}
+  >
+    <Content />
+  </PostLayout>
+)}
