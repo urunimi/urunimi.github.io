@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: http://urunimi.github.io/sitemap.xml

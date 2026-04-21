@@ -1,0 +1,30 @@
+---
+// Attaches IntersectionObserver-driven fade-in animation to every [data-fade]
+// element. Respects prefers-reduced-motion via CSS (global.css).
+---
+<script>
+  import { animate } from 'motion';
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = document.querySelectorAll<HTMLElement>('[data-fade]');
+
+  if (items.length && 'IntersectionObserver' in window && !reduce) {
+    items.forEach((el) => { el.style.opacity = '0'; });
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            animate(
+              entry.target as HTMLElement,
+              { opacity: [0, 1], transform: ['translateY(8px)', 'translateY(0)'] },
+              { duration: 0.4, ease: 'easeOut' },
+            );
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -10% 0px' },
+    );
+    items.forEach((el) => io.observe(el));
+  }
+</script>

@@ -1,0 +1,52 @@
+---
+---
+<div class="prose-root">
+  <slot />
+</div>
+
+<style is:global>
+  .prose-root { max-width: 680px; }
+  .prose-root h1 { font-size: 2.25rem; line-height: 1.2; font-weight: 700; margin: 2rem 0 1rem; }
+  .prose-root h2 { font-size: 1.75rem; font-weight: 700; margin: 2.5rem 0 1rem; scroll-margin-top: 5rem; }
+  .prose-root h3 { font-size: 1.375rem; font-weight: 700; margin: 2rem 0 0.75rem; scroll-margin-top: 5rem; }
+  .prose-root p, .prose-root li { font-size: 17px; line-height: 1.75; }
+  .prose-root p { margin: 1rem 0; }
+  .prose-root ul, .prose-root ol { margin: 1rem 0; padding-left: 1.5rem; }
+  .prose-root ul { list-style: disc; }
+  .prose-root ol { list-style: decimal; }
+  .prose-root li { margin: 0.25rem 0; }
+  .prose-root blockquote { border-left: 3px solid var(--color-border); padding: 0.25rem 0 0.25rem 1rem; color: var(--color-ink-muted); margin: 1.25rem 0; }
+  .prose-root code:not(pre code) {
+    background: var(--color-code-bg);
+    padding: 0.1em 0.4em;
+    border-radius: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+  .prose-root table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.95rem; }
+  .prose-root th, .prose-root td { border: 1px solid var(--color-border); padding: 0.5rem 0.75rem; text-align: left; }
+  .prose-root th { background: var(--color-code-bg); font-weight: 700; }
+  .prose-root img { border-radius: 0.5rem; margin: 1.5rem auto; max-width: 100%; height: auto; }
+  .prose-root hr { border: 0; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+
+  /* remark-github-blockquote-alert admonitions */
+  .prose-root .markdown-alert {
+    border-left: 4px solid var(--color-primary);
+    background: var(--color-code-bg);
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .prose-root .markdown-alert-title {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .prose-root .markdown-alert-note      { border-left-color: #455A64; }
+  .prose-root .markdown-alert-tip       { border-left-color: #00897B; }
+  .prose-root .markdown-alert-important { border-left-color: #FFA000; background: #FFF8E1; }
+  .prose-root .markdown-alert-warning   { border-left-color: #FF8F00; }
+  .prose-root .markdown-alert-caution   { border-left-color: #C62828; }
+</style>

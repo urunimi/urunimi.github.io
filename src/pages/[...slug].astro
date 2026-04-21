@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../layouts/PostLayout.astro';
+import { buildPostPath } from '../lib/permalink';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: buildPostPath({ id: post.id, categories: post.data.categories }) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+---
+<PostLayout
+  title={post.data.title}
+  date={post.data.date}
+  categories={post.data.categories}
+  headings={headings}
+>
+  <Content />
+</PostLayout>

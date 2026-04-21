@@ -1,0 +1,30 @@
+---
+import type { MarkdownHeading } from 'astro';
+interface Props { headings: MarkdownHeading[]; }
+const { headings } = Astro.props;
+const items = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+{items.length > 0 && (
+  <>
+    <aside class="hidden xl:block sticky top-20 self-start text-sm w-56 shrink-0">
+      <p class="text-ink-muted uppercase tracking-wide text-xs font-semibold mb-3">On this page</p>
+      <ul class="list-none p-0 m-0 space-y-1.5">
+        {items.map((h) => (
+          <li class={h.depth === 3 ? 'pl-3' : ''}>
+            <a href={`#${h.slug}`} class="no-underline text-ink-muted hover:text-ink">{h.text}</a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+    <details class="xl:hidden my-6 border border-border rounded p-3 text-sm">
+      <summary class="cursor-pointer font-medium">On this page</summary>
+      <ul class="list-none mt-2 space-y-1">
+        {items.map((h) => (
+          <li class={h.depth === 3 ? 'pl-3' : ''}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ul>
+    </details>
+  </>
+)}

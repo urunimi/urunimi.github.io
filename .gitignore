@@ -27,3 +27,15 @@ codekit-config.json
 .sass-cache
 _asset_bundler_cache
 _site
+
+# Astro
+.astro/
+dist/
+.env
+.env.*
+!.env.example
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
