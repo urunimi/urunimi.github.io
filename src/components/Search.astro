@@ -1,0 +1,46 @@
+---
+// Pagefind search — ⌘K / Ctrl-K trigger opens a modal
+---
+<dialog
+  id="search-dialog"
+  class="fixed inset-0 m-auto rounded-lg border border-border bg-bg p-0 w-[min(640px,92vw)] max-h-[70vh] shadow-xl backdrop:bg-black/30"
+>
+  <div class="p-4">
+    <div id="search"></div>
+  </div>
+</dialog>
+
+<script>
+  import '@pagefind/default-ui/css/ui.css';
+
+  async function init() {
+    const mod = await import('@pagefind/default-ui');
+    const PagefindUI = (mod as any).PagefindUI ?? (mod as any).default;
+    new PagefindUI({ element: '#search', showSubResults: true });
+
+    const dialog = document.getElementById('search-dialog') as HTMLDialogElement | null;
+    if (!dialog) return;
+
+    const trigger = document.querySelector('[data-search-trigger]');
+    trigger?.addEventListener('click', () => dialog.showModal());
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        dialog.showModal();
+      } else if (e.key === 'Escape' && dialog.open) {
+        dialog.close();
+      }
+    });
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>

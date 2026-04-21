@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Prose from '../components/Prose.astro';
 import Toc from '../components/Toc.astro';
+import Giscus from '../components/Giscus.astro';
 import type { MarkdownHeading } from 'astro';
 
 interface Props {
@@ -29,6 +30,7 @@ const fmt = date.toISOString().slice(0, 10);
         </div>
       </header>
       <Prose><slot /></Prose>
+      <Giscus />
     </div>
     <Toc headings={headings} />
   </article>
