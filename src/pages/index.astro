@@ -1,17 +1,29 @@
 ---
-
+import '../styles/global.css';
 ---
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ben'space — palette check</title>
+  </head>
+  <body class="min-h-screen">
+    <main class="mx-auto max-w-5xl px-4 py-16">
+      <h1 class="text-4xl font-bold mb-6">Ben'space</h1>
+      <p class="text-ink-muted mb-10">palette verification page (temporary)</p>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+      <section class="grid grid-cols-2 gap-4 max-w-md">
+        <div class="p-4 border border-border rounded bg-white">bg (cream body)</div>
+        <div class="p-4 rounded bg-primary text-white">primary</div>
+        <div class="p-4 rounded bg-secondary text-white">secondary</div>
+        <div class="p-4 rounded bg-tertiary text-ink">tertiary</div>
+        <div class="p-4 rounded bg-code-bg">code-bg</div>
+        <div class="p-4 rounded border border-border">border</div>
+      </section>
+
+      <p class="mt-10">
+        <a href="#">sample link</a> · <code>inline code</code> · <strong>bold ink</strong>
+      </p>
+    </main>
+  </body>
 </html>
