@@ -10,17 +10,15 @@ categories: [qa, testing, ci]
 
 ## 설계 한눈에
 
-```
-┌───────────────────────────────────────────────┐
-│  ①  GitHub Actions (cron: 매시 정각, 영업시간) │
-│         │                                      │
-│         ▼                                      │
-│  ②  Playwright (Page Object Model)             │
-│         │                                      │
-│         ├──► ③ Slack 알림 (상태 변화일 때만)  │
-│         │                                      │
-│         └──► ④ TMS (TC 단위 결과 누적)        │
-└───────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    A["① GitHub Actions<br/>cron: 매시 정각, 영업시간"]
+    B["② Playwright<br/>Page Object Model"]
+    C["③ Slack 알림<br/>상태 변화일 때만"]
+    D["④ TMS<br/>TC 단위 결과 누적"]
+    A --> B
+    B --> C
+    B --> D
 ```
 
 네 블록 각각이 왜 그 모양이어야 했는지를 순서대로 적어봅니다.
