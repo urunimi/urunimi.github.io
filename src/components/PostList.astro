@@ -1,6 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { buildPostPath } from '../lib/permalink';
+import { buildPostSlug } from '../lib/permalink';
 
 interface Props { posts: CollectionEntry<'posts'>[]; }
 const { posts } = Astro.props;
@@ -32,7 +32,7 @@ const fmt = (d: Date) => {
           <li class="flex flex-wrap items-baseline gap-3" data-fade>
             <time class="text-ink-muted font-mono text-sm tabular-nums">{fmt(p.data.date)}</time>
             <a
-              href={`/${buildPostPath({ id: p.id, categories: p.data.categories })}/`}
+              href={`/${buildPostSlug(p.id)}/`}
               class="text-ink hover:text-secondary no-underline font-medium"
             >{p.data.title}</a>
             <span class="flex gap-1 flex-wrap">

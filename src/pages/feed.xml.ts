@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { buildPostPath } from '../lib/permalink';
+import { buildPostSlug } from '../lib/permalink';
 import type { APIContext } from 'astro';
 
 export const GET = async (context: APIContext) => {
@@ -14,7 +14,7 @@ export const GET = async (context: APIContext) => {
       .map((p) => ({
         title: p.data.title,
         pubDate: p.data.date,
-        link: `/${buildPostPath({ id: p.id, categories: p.data.categories })}/`,
+        link: `/${buildPostSlug(p.id)}/`,
         categories: p.data.categories,
       })),
     customData: '<language>ko-KR</language>',
