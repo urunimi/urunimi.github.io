@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+const posts = await getCollection('posts');
+---
+<BaseLayout title="Posts — Ben'space">
+  <div class="mx-auto max-w-5xl px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Posts</h1>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

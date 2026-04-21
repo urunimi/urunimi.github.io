@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const names = new Set<string>();
+  posts.forEach((p) => p.data.categories.forEach((c) => names.add(c.toLowerCase())));
+  return [...names].map((name) => ({
+    params: { name },
+    props: {
+      name,
+      posts: posts.filter((p) =>
+        p.data.categories.map((c) => c.toLowerCase()).includes(name),
+      ),
+    },
+  }));
+}
+
+const { name, posts } = Astro.props;
+---
+<BaseLayout title={`${name} — Ben'space`}>
+  <div class="mx-auto max-w-5xl px-4 py-12">
+    <p class="text-sm text-ink-muted uppercase tracking-wide">category</p>
+    <h1 class="text-4xl font-bold mb-8">{name}</h1>
+    <PostList posts={posts} />
+  </div>
+</BaseLayout>

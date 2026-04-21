@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await getCollection('posts');
+const counts = new Map<string, number>();
+posts.forEach((p) =>
+  p.data.categories.forEach((c) => {
+    const k = c.toLowerCase();
+    counts.set(k, (counts.get(k) ?? 0) + 1);
+  }),
+);
+const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+---
+<BaseLayout title="Categories — Ben'space">
+  <div class="mx-auto max-w-5xl px-4 py-12">
+    <h1 class="text-4xl font-bold mb-8">Categories</h1>
+    <ul class="flex flex-wrap gap-2 list-none p-0 m-0">
+      {sorted.map(([name, n]) => (
+        <li>
+          <a
+            href={`/categories/${name}/`}
+            class="inline-flex items-baseline gap-1 rounded-full border border-border px-3 py-1 no-underline hover:border-secondary"
+          >
+            <span>{name}</span>
+            <span class="text-xs text-ink-muted">{n}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

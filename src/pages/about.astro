@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Prose from '../components/Prose.astro';
+
+// TODO: replace with real resume URL when provided
+const resumeUrl = '#';
+---
+<BaseLayout title="About — Ben'space">
+  <div class="mx-auto max-w-5xl px-4 py-12">
+    <Prose>
+      <h1>About</h1>
+      <p>
+        안녕하세요, 유병우(Ben) 입니다.<br />
+        지속 가능한 코드와 이해하기 쉬운 설계에 관심이 많은 개발자입니다.
+      </p>
+      <p>
+        10년 넘게 수억 명 규모의 메신저·광고 플랫폼을 만들며 배운 한 가지는,
+        <strong>"지금 편하게 쓰느냐보다 나중에 고치기 쉬운가"</strong>
+        가 어떤 기술을 쓰느냐보다 먼저라는 것이었습니다.
+      </p>
+
+      <h2>관심사</h2>
+      <ul>
+        <li>
+          <strong>언어·프레임워크에 구속되지 않는 설계</strong> — Go, Kotlin, Python
+          어느 쪽이든 Clean Architecture 와 SOLID 가 통하는 이유를 좋아합니다. 도구는 바뀌어도
+          원칙은 남으니까요.
+        </li>
+        <li>
+          <strong>과하지 않은 설계</strong> — 확장 가능성은 고려하지만 확장을 미리 구현하지
+          않습니다. KISS·YAGNI 를 실무에서 지켜내는 판단에 관심이 많습니다.
+        </li>
+        <li>
+          <strong>다음 사람이 편한 코드</strong> — 모듈 경계와 의존성 방향이 깔끔하면
+          대부분의 문제가 단순해집니다.
+        </li>
+        <li>
+          <strong>설계 의도를 기록으로</strong> — 이 블로그는 "왜 그렇게 만들었는지"를 남기는
+          공간입니다. 툴 사용법보다 구조적 결정의 배경을 주로 씁니다.
+        </li>
+      </ul>
+
+      <h2>주로 다루는 주제</h2>
+      <p>
+        Clean Architecture · Domain-driven design · SOLID / KISS / YAGNI ·
+        Go / Kotlin / Python · Kubernetes / OCI / ArgoCD · 테스트·품질 파이프라인
+      </p>
+
+      <hr />
+
+      <p>
+        <a href={resumeUrl}>Resume</a> ·
+        <a href="https://github.com/urunimi">GitHub</a> ·
+        <a href="mailto:byungwoo.yoo@datarize.ai">Email</a>
+      </p>
+    </Prose>
+  </div>
+</BaseLayout>
