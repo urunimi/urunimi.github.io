@@ -33,7 +33,7 @@ for (const f of postFiles) {
         new RegExp(`<meta http-equiv="refresh" content="0; url=${shortUrl}"`),
       );
       expect(html).toMatch(
-        new RegExp(`<link rel="canonical" href="https://urunimi\\.github\\.io${shortUrl}"`),
+        new RegExp(`<link rel="canonical" href="https://blog\\.hovans\\.com${shortUrl}"`),
       );
       expect(html).toMatch(/noindex/);
     });
