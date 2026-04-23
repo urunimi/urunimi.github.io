@@ -11,7 +11,7 @@ import matter from 'gray-matter';
 import { remarkAlert } from 'remark-github-blockquote-alert';
 import rehypeMermaid from 'rehype-mermaid';
 
-const SITE = 'https://urunimi.github.io';
+const SITE = 'https://blog.hovans.com';
 
 // Compute the set of legacy /:categories/:slug/ URLs so the sitemap excludes
 // them — only the short canonical /slug/ URLs belong in the sitemap. The
