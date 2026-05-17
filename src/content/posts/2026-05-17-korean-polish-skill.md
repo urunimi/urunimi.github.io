@@ -47,7 +47,7 @@ LLM이 한국어를 어색하게 만드는 원인은 두 가지가 알려져 있
 
 ## 시도 2: skill로 분리 + 2-pass 강제
 
-그래서 치환 표 자체를 별도 skill로 분리했습니다. `~/.claude/skills/korean-polish/SKILL.md`.
+그래서 치환 표 자체를 별도 skill로 분리했습니다 ([github.com/urunimi/skills](https://github.com/urunimi/skills)). `~/.claude/skills/korean-polish/SKILL.md`.
 
 skill 안에는 3단계 절차를 명시했어요.
 
@@ -124,3 +124,11 @@ skill description에 "사용자가 한국어로 질문하거나 한국어 응답
 - self-critique를 별도 단계로 쪼개면 정확도가 올라간다는 게 핵심입니다.
 
 참고로 skill 호출이 자동으로 안 잡히면 UserPromptSubmit hook으로 한국어 입력 감지 시 reminder를 주입하는 방법도 있습니다. 저는 이전보다 훨씬 나아져서 이대로 좀더 사용을 해보고 있는데 자동 매칭이 잘 되면 그때 hook을 붙일 계획입니다.
+
+## 설치
+
+Claude Code에서:
+
+```
+/plugin marketplace add urunimi/skills
+```
