@@ -131,4 +131,5 @@ Claude Code에서:
 
 ```
 /plugin marketplace add urunimi/skills
+/plugin install korean-polish@urunimi-skills
 ```
