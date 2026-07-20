@@ -28,7 +28,7 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - name: Install Playwright Chromium (needed by rehype-mermaid)
-        run: pnpm dlx playwright install --with-deps chromium
+        run: pnpm exec playwright install --with-deps chromium
       - run: pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
