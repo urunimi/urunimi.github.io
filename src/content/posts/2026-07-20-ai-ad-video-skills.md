@@ -1,7 +1,7 @@
 ---
 title: "AI 영상 제작과 관심사의 분리(SoC)"
 date: 2026-07-20
-categories: [dev-tools, ai]
+categories: [video-llm, ai-agent]
 ---
 
 화장품 제품 링크로 15초짜리 광고를 만들어보려고 했습니다. 검색을 좀 해봤더니 Claude + Higgsfield(Seedance 2.0) 조합으로 한 채팅 안에서 기획, 콘티, 영상까지 하는 것에 많은 레퍼런스가 있었고, 저도 따라서 아래의 순서로 영상을 제작했습니다.

@@ -1,7 +1,7 @@
 ---
 title: "Claude, 너 왜케 말을 이상하게 하니?"
 date: 2026-05-17
-categories: [dev-tools, ai]
+categories: [dev-tools, ai-agent]
 ---
 
 Claude Code를 국어로 쓰다 보면 자꾸 어색한 표현을 씁니다.
