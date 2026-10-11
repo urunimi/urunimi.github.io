@@ -1,11 +1,12 @@
 {
   "mcpServers": {
     "linear": {
-      "type": "http",
-      "url": "https://mcp.linear.app/mcp",
-      "headers": {
-        "Authorization": "Bearer ${LINEAR_API_KEY_URUNIMI}"
-      }
+      "type": "stdio",
+      "command": "sh",
+      "args": [
+        "-c",
+        ": \"${LINEAR_API_KEY_URUNIMI:?LINEAR_API_KEY_URUNIMI is required}\"; exec npx -y mcp-remote@0.14.3 https://mcp.linear.app/mcp --transport http-only --header \"Authorization:Bearer $LINEAR_API_KEY_URUNIMI\""
+      ]
     }
   }
 }
