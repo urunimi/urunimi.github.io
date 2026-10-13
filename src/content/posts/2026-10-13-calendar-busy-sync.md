@@ -54,11 +54,11 @@ flowchart LR
 
 실제로 동기화한 두 회사의 캘린더입니다. 본문에서는 A사와 B사로 구분했고, 화면에는 각각 `JT Busy`와 `LAKA Busy`라는 제목을 썼습니다. 회의 제목과 사람 이름, 장소 등은 가렸습니다.
 
-![A사 캘린더에 B사 일정이 LAKA Busy로 표시된 모습](/assets/2026-10-13/calendar-jt-redacted.png)
+![A사 캘린더에 B사 일정이 LAKA Busy로 표시된 모습](./2026-10-13/calendar-jt-redacted.png)
 
 *A사 캘린더: B사에서 바쁜 시간이 `LAKA Busy`로 표시됩니다.*
 
-![B사 캘린더에 A사 일정이 JT Busy로 표시된 모습](/assets/2026-10-13/calendar-laka-redacted.png)
+![B사 캘린더에 A사 일정이 JT Busy로 표시된 모습](./2026-10-13/calendar-laka-redacted.png)
 
 *B사 캘린더: A사에서 바쁜 시간이 `JT Busy`로 표시됩니다. 상대 회의의 제목 대신 바쁜 시간만 보입니다.*
 

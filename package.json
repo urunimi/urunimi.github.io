@@ -17,7 +17,8 @@
   "dependencies": {
     "astro": "^6.1.8",
     "gray-matter": "^4.0.3",
-    "motion": "^12.38.0"
+    "motion": "^12.38.0",
+    "sharp": "0.34.5"
   },
   "devDependencies": {
     "@astrojs/mdx": "^5.0.3",
