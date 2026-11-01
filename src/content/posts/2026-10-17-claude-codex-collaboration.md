@@ -47,7 +47,7 @@ Anthropic도 [Claude 여러 명에게 기획, 개발, 검사를 나눠 맡겼습
 
 ## Before: 코드가 엉망진창이잖아! 하지만 빨랐죠.
 
-<img src="https://i.namu.wiki/i/YeI2Gjf3ysX3Iwb5d1jhiR3a1Y1vC-H2nWzWBMy8VZec1aLdDwAI62amm273vRHVsnNp5eD28fsOV8GgF-NjkdR15rmqKm5XlzuO5mUoeCuSSJwguYjVvBJxJCrCwC53nujQu5WClKCabE0LnYLkEg.webp" alt="계산은 틀렸지만 빨랐다고 답하는 밈" />
+![계산은 틀렸지만 빨랐다고 답하는 밈](./2026-10-17/but-it-was-fast.png)
 
 코딩 에이전트에게 기능을 설명하면 실행되는 결과물까지는 꽤 빨리 나옵니다. 제 다른 글들을 보면 코드 품질에 엄청난 신경을 쓰고 있는데요. 코드 품질을 꾸준히 관리한 덕분에 제가 사용하는 코딩 도구들은 신경을 많이 쓴 코드를 Reference 하여 기술부채가 알아서 관리될 수 있도록 하고 있습니다. 하지만 새로 추가되는 코드는 엔트로피가 늘 증가하는 것처럼 제가 직접 코드와 화면을 보며 피드백을 줘야하는 일이 많았습니다. 
 
